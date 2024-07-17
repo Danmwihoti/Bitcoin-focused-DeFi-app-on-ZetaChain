@@ -28,3 +28,5 @@ Learn more about the template and the functionality it provides
 To learn more about building decentralized apps on ZetaChain, follow the
 tutorials available in
 [the introduction to ZetaChain](https://www.zetachain.com/docs/developers).
+
+# Bitcoin-focused-DeFi-app-on-ZetaChain
