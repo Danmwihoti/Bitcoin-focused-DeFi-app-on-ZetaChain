@@ -40,4 +40,17 @@ contract NFT is zContract, ERC721, OnlySystem {
         }
         _mintNFT(recipient, context.chainID, amount);
     }
+
+    function _mintNFT(
+        address recipient,
+        uint256 chainId,
+        uint256 amount
+    ) private {
+        uint256 tokenId = _nextTokenId;
+        _safeMint(recipient, tokenId);
+        tokenChains[tokenId] = chainId;
+        tokenAmounts[tokenId] = amount;
+        _nextTokenId++;
+    }
 }
+
