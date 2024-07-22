@@ -52,5 +52,22 @@ contract NFT is zContract, ERC721, OnlySystem {
         tokenAmounts[tokenId] = amount;
         _nextTokenId++;
     }
+
+    function burnNFT(uint256 tokenId, bytes memory recipient) public {
+        if (!_isApprovedOrOwner(_msgSender(), tokenId)) {
+            revert CallerNotOwnerNotApproved();
+        }
+        address zrc20 = systemContract.gasCoinZRC20ByChainId(
+            tokenChains[tokenId]
+        );
+        (, uint256 gasFee) = IZRC20(zrc20).withdrawGasFee();
+
+        IZRC20(zrc20).approve(zrc20, gasFee);
+        IZRC20(zrc20).withdraw(recipient, tokenAmounts[tokenId] - gasFee);
+
+        _burn(tokenId);
+        delete tokenAmounts[tokenId];
+        delete tokenChains[tokenId];
+    }
 }
 

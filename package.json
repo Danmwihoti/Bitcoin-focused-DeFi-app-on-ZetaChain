@@ -49,5 +49,10 @@
     "typechain": "^8.1.0",
     "typescript": ">=4.5.0"
   },
-  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72",
+  "dependencies": {
+    "@zetachain/networks": "^8.0.0",
+    "@zetachain/protocol-contracts": "^8.0.1",
+    "viem": "^2.17.8"
+  }
 }
