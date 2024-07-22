@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bitcoin</title>
+    </head>
+
+    <body>
+        <input type="number" id="amount" placeholder="Amount in tBTC"/>
+        <input type="text" id="contract" placeholder="Omnichain contract address" />
+        <input type="text" id="message" placeholder="Contract call parameters" />
+        <select id="walletSelect">
+            <option value="xdefi">XDEFI</option>
+            <option value="unisat">Unisat</option>
+        </select>
+        <button onclick="sendTransaction()">Send Transaction</button>
+        <script src="./script.js"></script>
+
+    </body>
+</html>
