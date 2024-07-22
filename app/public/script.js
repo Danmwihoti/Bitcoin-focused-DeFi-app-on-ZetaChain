@@ -18,3 +18,48 @@ async function sendTransaction() {
     }
 
 }
+
+async function useXDEFI(p){
+    if (!window.xfi) return alert("XDEFI wallet nor installed");
+    const wallet = window.xfi;
+    window.xfi.bitcoin.changeNetwork("testnet");
+    const account = (await wallet?.bitcoin?.getAccounts())?.[0];
+    if (!account) return alert("No account found");
+    const tx = {
+        method: "transfer",
+        params: [
+            {
+                feeRate: 10,
+                from: account,
+                recipient: p.tss,
+                amount: {
+                    amount: p.amount,
+                    decimals: 8,
+                },
+                memo: `hex::${p.contract}${p.message}`,
+            },
+        ]
+    };
+    window.xfi.bitcoin.request(tx, (err, res) => {
+        if (e) {
+            return alert(`Couldn't send transaction, ${JSON.stringify(err)}`);
+        }
+        else if (res) {
+            return alert(`Broadcasted a transaction, ${JSON.stringify(res)}`);
+        }
+    })
+}
+
+async function useUnisat(p) {
+    if (!window.unisat) return alert("Unisat wallet not installed");
+    try {
+      await window.unisat.requestAccounts();
+      const memos = [`${p.contract}${p.message}`.toLowerCase()];
+      const tx = await unisat.sendBitcoin(p.tss, p.amount, { memos });
+      return alert(`Broadcasted a transaction: ${JSON.stringify(tx)}`);
+    } catch (e) {
+      return alert(`Couldn't send transaction, ${JSON.stringify(e)}`);
+    }
+  }
+
+  
